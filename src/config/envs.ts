@@ -6,16 +6,12 @@ interface EnvVars {
   PORT: number;
 
   NATS_SERVERS: string[];
-  ORDERS_MICROSERVICE_HOST: string;
-  ORDERS_MICROSERVICE_PORT: number;
 }
 
 const envsSchema = joi.object({
   PORT: joi.number().required(),
-  ORDERS_MICROSERVICE_HOST: joi.string().required(),
-  ORDERS_MICROSERVICE_PORT: joi.number().required(),
 
-  NATS_SERVERS: joi.array().items(joi.string().uri()).required(),
+  NATS_SERVERS: joi.array().items(joi.string().uri()).required()
 })
 .unknown(true);
 
@@ -36,7 +32,4 @@ export const envs = {
   port: envVars.PORT,
 
   natsServers: envVars.NATS_SERVERS,
-
-  ordersMicroserviceHost: envVars.ORDERS_MICROSERVICE_HOST,
-  ordersMicroservicePort: envVars.ORDERS_MICROSERVICE_PORT
 };
